@@ -1,0 +1,20 @@
+CREATE TABLE P13([DATE] DATE, [QA] INT);
+
+INSERT INTO
+	P13
+VALUES
+('7/1/2018', 100),
+	('7/2/2018', 75),
+	('7/3/2018', -150),
+	('7/4/2018', 50),
+	('7/5/2018', -100);
+
+SELECT
+	[DATE],
+	QA,
+	SUM(QA) OVER (
+		ORDER BY
+			DATE
+	) [QA]
+FROM
+	P13

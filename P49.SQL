@@ -1,0 +1,32 @@
+CREATE TABLE P49(
+	[ORDER] INT,
+	[NAME] VARCHAR(255),
+	[WEIGHT] INT
+);
+
+INSERT INTO
+	P49
+VALUES
+(1, 'HARUTO', 611),
+	(2, 'MINATO', 533),
+	(3, 'HARUKI', 623),
+	(4, 'SOTA', 569),
+	(5, 'AOTO', 610),
+	(6, 'HINATA', 525)
+SELECT
+	TOP 1 [NAME]
+FROM
+	(
+		SELECT
+			[NAME],
+			SUM([WEIGHT]) OVER(
+				ORDER BY
+					[ORDER]
+			) [SUM]
+		FROM
+			P49
+	) T
+WHERE
+	T.[SUM] < 2000
+ORDER BY
+	[SUM] DESC

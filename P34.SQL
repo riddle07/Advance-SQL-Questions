@@ -1,0 +1,27 @@
+CREATE TABLE P34(
+	[ORDER ID] INT,
+	[CUSTOMER ID] INT,
+	AMOUNT MONEY
+);
+
+INSERT INTO
+	P34
+VALUES
+(1, 1001, $ 25),
+(1, 1001, $ 50),
+	(3, 2002, $ 65),
+	(4, 3003, $ 50)
+SELECT
+	*
+FROM
+	P34
+EXCEPT
+	(
+		SELECT
+			*
+		FROM
+			P34
+		WHERE
+			[CUSTOMER ID] = 1001
+			AND AMOUNT = $ 50
+	)
